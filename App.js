@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
+  SafeAreaView,
 } from 'react-native';
 import {changeIcon, getIcon} from 'react-native-change-icon';
 
@@ -52,24 +53,26 @@ const App = () => {
   ];
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Select your App Icon</Text>
       </View>
       <View style={styles.iconContainer}>
         {iconsList.map(icon => {
           const isSelected = icon.iconName === currentIcon;
-          console.log('isSelected>>>>>', isSelected);
           return (
             <TouchableWithoutFeedback
               key={icon.id}
-              onPress={() => changeAppIcon(icon.iconName)}>
+              onPress={() => {
+                changeAppIcon(icon.iconName);
+              }}>
               <View
-                style={{
-                  backgroundColor: isSelected ? 'lightgray' : 'transparent',
-                  borderRadius: 10,
-                  margin: 4,
-                }}>
+                style={[
+                  styles.iconView,
+                  {
+                    backgroundColor: isSelected ? 'lightgray' : 'transparent',
+                  },
+                ]}>
                 <Image style={styles.icon} source={icon.image} />
               </View>
             </TouchableWithoutFeedback>
@@ -77,11 +80,12 @@ const App = () => {
         })}
       </View>
       <Text>Current Icon : {currentIcon}</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {flex: 1},
   headingContainer: {padding: 8, marginTop: 20},
   heading: {
     fontWeight: '500',
@@ -96,6 +100,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+  },
+  iconView: {
+    borderRadius: 10,
+    margin: 4,
   },
   icon: {
     height: 100,
