@@ -4,7 +4,7 @@
 
 <div>
 <image height="700px" width="300px" style="margin-right:8px" src="src/assets/changeiconandroid.gif">
-<image height="700px" width="50%" style="border-radius:20px" src="src/assets/changeiconios.gif">
+<image height="700px" width="300px" style="border-radius:20px" src="src/assets/changeiconios.gif">
 <div>
 
 ## To give it a try -
